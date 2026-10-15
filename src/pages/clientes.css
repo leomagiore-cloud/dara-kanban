@@ -1,0 +1,515 @@
+/* ============================================================
+   CLIENTES — v0 edition
+   ============================================================ */
+
+.cli {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeUp 400ms var(--ease-out);
+}
+
+/* ---------- Toolbar ---------- */
+.cli-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.cli-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 8px 14px;
+  color: var(--muted-foreground);
+  transition: all 200ms var(--ease-out);
+}
+.cli-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(69, 186, 80, 0.2);
+}
+.cli-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--foreground);
+  font-size: 13.5px;
+  width: 100%;
+  font-family: inherit;
+}
+.cli-search input::placeholder { color: var(--muted-foreground); }
+
+/* ---------- Grid ---------- */
+.cli-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ---------- Card ---------- */
+.cli-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 200ms var(--ease-out);
+}
+.cli-card:hover {
+  border-color: #2a2d31;
+  transform: translateY(-2px);
+}
+.cli-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cli-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-lg);
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.cli-avatar.big { width: 48px; height: 48px; font-size: 18px; }
+
+.cli-card-info { flex: 1; min-width: 0; }
+.cli-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+.cli-card-company {
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+.cli-plan-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(69, 186, 80, 0.12);
+  color: var(--accent);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.cli-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.cli-meta-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12.5px;
+}
+.cli-meta-label {
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 10.5px;
+  font-weight: 500;
+}
+.cli-meta-value {
+  color: var(--foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cli-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.cli-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.cli-stat.value { align-items: flex-end; }
+.cli-stat-num {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--foreground);
+  font-variant-numeric: tabular-nums;
+}
+.cli-stat.value .cli-stat-num { color: var(--accent); }
+.cli-stat-label {
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.cli-empty {
+  padding: 60px 0;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--muted-foreground);
+  grid-column: 1 / -1;
+}
+.cli-empty.small { padding: 20px 0; }
+
+/* ---------- Drawer ---------- */
+.cli-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 2, 3, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100;
+  animation: fadeIn 150ms var(--ease-out);
+}
+.cli-drawer {
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  width: 460px;
+  max-width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 24px;
+  animation: slideLeft 250ms var(--ease-out);
+}
+.cli-drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.cli-drawer-head-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cli-drawer-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+.cli-drawer-company {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+
+.cli-drawer-section { margin-bottom: 22px; }
+.cli-section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted-foreground);
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cli-section-count {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  background: var(--secondary);
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cli-drawer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+}
+.cli-field { display: flex; flex-direction: column; gap: 3px; }
+.cli-field-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+.cli-field-value {
+  font-size: 13.5px;
+  color: var(--foreground);
+  word-break: break-word;
+}
+
+.cli-notes {
+  font-size: 13.5px;
+  color: var(--foreground);
+  background: var(--secondary);
+  padding: 12px;
+  border-radius: var(--r-md);
+  line-height: 1.55;
+}
+
+.cli-video-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cli-video-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--secondary);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+}
+.cli-video-info { min-width: 0; flex: 1; }
+.cli-video-title {
+  font-size: 13.5px;
+  color: var(--foreground);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cli-video-meta {
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+.cli-video-stage {
+  font-size: 11px;
+  color: var(--accent);
+  background: rgba(69, 186, 80, 0.1);
+  border: 1px solid rgba(69, 186, 80, 0.25);
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cli-drawer-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+.cli-drawer-actions .btn { flex: 1; justify-content: center; }
+
+/* ---------- Animações ---------- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideLeft {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* ============================================================
+   CHECKBOX GERAR CONTRATO
+   ============================================================ */
+.cli-contract-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: all 150ms var(--ease-out);
+  margin-bottom: 8px;
+}
+.cli-contract-check:hover { border-color: var(--accent); }
+.cli-contract-check input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.cli-contract-check-box {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms var(--ease-out);
+  background: transparent;
+  position: relative;
+}
+.cli-contract-check input:checked + .cli-contract-check-box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.cli-contract-check input:checked + .cli-contract-check-box::after {
+  content: '';
+  width: 9px; height: 5px;
+  border-left: 2px solid var(--background);
+  border-bottom: 2px solid var(--background);
+  transform: rotate(-45deg);
+  margin-top: -2px;
+}
+.cli-contract-check-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+/* ============================================================
+   LISTA DE CONTRATOS NO DRAWER
+   ============================================================ */
+.cli-contract-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cli-contract-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.cli-contract-info { min-width: 0; flex: 1; }
+.cli-contract-num {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.cli-contract-date {
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   MODAL DE PRÉ-VISUALIZAÇÃO DO CONTRATO
+   ============================================================ */
+.cli-contract-modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  width: 820px;
+  max-width: 96vw;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 250ms var(--ease-out);
+}
+.cli-contract-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+  background: var(--secondary);
+}
+.cli-contract-preview {
+  flex: 1;
+  overflow: hidden;
+  background: #e5e5e5;
+  padding: 20px;
+}
+.cli-contract-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  border: none;
+  border-radius: var(--r-md);
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   SEÇÕES E ERROS NO MODAL (novos)
+   ============================================================ */
+.kb-form-section {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 10px 0 4px;
+  border-bottom: 1px solid var(--border);
+  margin: 10px 0 4px;
+}
+.kb-form-section:first-child { margin-top: 0; }
+.kb-form-hint {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted-foreground);
+  margin-left: 6px;
+}
+
+/* Modal um pouco mais largo por causa dos campos */
+.kb-modal { width: 720px; }
+
+/* Erros */
+.field-error {
+  font-size: 11.5px;
+  color: var(--destructive);
+  margin-top: 3px;
+}
+.kb-form input.has-error,
+.kb-form select.has-error,
+.kb-form textarea.has-error {
+  border-color: var(--destructive) !important;
+  box-shadow: 0 0 0 2px rgba(241, 77, 76, 0.15) !important;
+}
+
+/* Campo com ação inline (ícone de loading no CEP) */
+.field-with-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.field-with-action input { padding-right: 34px; }
+.field-action {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.spin { animation: spin 900ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }

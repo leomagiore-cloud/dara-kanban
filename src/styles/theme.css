@@ -1,0 +1,114 @@
+/* ============================================================
+   DARA — Design Tokens (v0 Edition)
+   Paleta completa baseada no SalesOps Dashboard
+   ============================================================ */
+
+:root {
+  /* ---------- Base ---------- */
+  --background:       #020203;
+  --foreground:       #eeeeee;
+  --card:             #050607;
+  --card-foreground:  #eeeeee;
+  --popover:          #050607;
+  --popover-foreground: #eeeeee;
+  --primary:          #eeeeee;
+  --primary-foreground: #020203;
+  --secondary:        #101214;
+  --secondary-foreground: #eeeeee;
+  --muted:            #101214;
+  --muted-foreground: #8f8f8f;
+  --border:           #191b1d;
+  --input:            #101214;
+  --ring:             #45ba50;
+
+  /* ---------- Accent / Estados ---------- */
+  --accent:           #45ba50;
+  --accent-foreground:#020203;
+  --success:          #45ba50;
+  --warning:          #ff8b25;
+  --destructive:      #f14d4c;
+  --destructive-foreground: #eeeeee;
+
+  /* ---------- Charts ---------- */
+  --chart-1: #00b1d8;
+  --chart-2: #45ba50;
+  --chart-3: #ff8b25;
+  --chart-4: #f14d4c;
+  --chart-5: #ad87ed;
+
+  /* ---------- Sidebar ---------- */
+  --sidebar:                    #040406;
+  --sidebar-foreground:         #eeeeee;
+  --sidebar-primary:            #45ba50;
+  --sidebar-primary-foreground: #020203;
+  --sidebar-accent:             #101214;
+  --sidebar-accent-foreground:  #eeeeee;
+  --sidebar-border:             #191b1d;
+  --sidebar-ring:               #45ba50;
+
+  /* ---------- Detalhe Magiore (dourado opcional) ---------- */
+  --gold:      #C6A352;
+  --gold-soft: #E4C878;
+
+  /* ---------- Raios (v0 = 0.5rem) ---------- */
+  --radius:   0.5rem;
+  --r-xs:     4px;
+  --r-sm:     6px;
+  --r-md:     8px;
+  --r-lg:     10px;
+  --r-xl:     14px;
+
+  /* ---------- Sombras ---------- */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.35);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.45);
+
+  /* ---------- Transições ---------- */
+  --ease:    cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --t-fast:  150ms var(--ease);
+  --t-base:  250ms var(--ease);
+  --t-slow:  400ms var(--ease);
+
+  /* ---------- Layout ---------- */
+  --sidebar-w:           260px;
+  --sidebar-w-collapsed: 72px;
+  --topbar-h:            64px;
+}
+
+/* ---------- Fontes ---------- */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ---------- Reset ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+a { color: var(--accent); text-decoration: none; transition: opacity var(--t-fast); }
+a:hover { opacity: 0.8; }
+
+::selection { background: var(--accent); color: var(--accent-foreground); }
+
+/* ---------- Scrollbar (match v0) ---------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #1f2124;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: #2a2d31; }

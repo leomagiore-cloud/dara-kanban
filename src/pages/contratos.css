@@ -1,0 +1,267 @@
+/* ============================================================
+   CONTRATOS — v0 edition
+   ============================================================ */
+
+.cont {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeUp 400ms var(--ease-out);
+}
+
+/* ============================================================
+   KPIs
+   ============================================================ */
+.cont-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1000px) { .cont-kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px)  { .cont-kpi-grid { grid-template-columns: 1fr; } }
+
+.cont-kpi {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cont-kpi-label {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+.cont-kpi-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+.cont-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cont-search {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 8px 14px;
+  color: var(--muted-foreground);
+  transition: all 200ms var(--ease-out);
+}
+.cont-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(69, 186, 80, 0.2);
+}
+.cont-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--foreground);
+  font-size: 13.5px;
+  width: 100%;
+  font-family: inherit;
+}
+.cont-search input::placeholder { color: var(--muted-foreground); }
+
+.cont-toolbar select {
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 8px 12px;
+  color: var(--foreground);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cont-toolbar select:focus { border-color: var(--accent); }
+
+/* ============================================================
+   LISTA
+   ============================================================ */
+.cont-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cont-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  transition: all 200ms var(--ease-out);
+}
+.cont-card:hover {
+  border-color: #2a2d31;
+  transform: translateY(-1px);
+}
+.cont-card.st-ativo    { border-left-color: var(--accent); }
+.cont-card.st-a_vencer { border-left-color: var(--warning); }
+.cont-card.st-vencido  { border-left-color: var(--destructive); }
+.cont-card.st-cancelado { border-left-color: var(--muted-foreground); opacity: 0.7; }
+
+.cont-card-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
+}
+.cont-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-md);
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cont-card-info { min-width: 0; flex: 1; }
+.cont-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.cont-card-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  letter-spacing: 0.4px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.cont-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.badge-ativo    { background: rgba(69, 186, 80, 0.12); color: var(--accent); }
+.badge-a_vencer { background: rgba(255, 139, 37, 0.12); color: var(--warning); }
+.badge-vencido  { background: rgba(241, 77, 76, 0.12); color: var(--destructive); }
+.badge-cancelado { background: rgba(143, 143, 143, 0.12); color: var(--muted-foreground); }
+
+.cont-card-client {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+.cont-card-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+  margin-top: 4px;
+}
+.cont-card-dates {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.cont-days { color: var(--warning); font-weight: 500; }
+.cont-days.danger { color: var(--destructive); }
+.cont-days.muted { color: var(--muted-foreground); }
+
+/* ============================================================
+   AÇÕES
+   ============================================================ */
+.cont-card-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.cont-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-md);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 150ms var(--ease-out);
+}
+.cont-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--secondary);
+}
+.cont-btn.warning:hover {
+  border-color: var(--warning);
+  color: var(--warning);
+}
+.cont-btn.danger:hover {
+  border-color: var(--destructive);
+  color: var(--destructive);
+}
+
+/* ============================================================
+   EMPTY
+   ============================================================ */
+.cont-empty {
+  padding: 70px 20px;
+  text-align: center;
+  border: 1px dashed var(--border);
+  border-radius: var(--r-xl);
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted-foreground);
+}
+.cont-empty svg { color: var(--accent); opacity: 0.6; }
+.cont-empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.cont-empty-desc {
+  font-size: 13.5px;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 720px) {
+  .cont-card { flex-direction: column; align-items: stretch; }
+  .cont-card-actions { justify-content: flex-end; }
+}
